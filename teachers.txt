@@ -1,0 +1,25 @@
+12
+1 1
+AG
+2 1
+Calc
+3 1
+Prog
+4 1
+DM
+5 1
+Eng
+6 1
+AG
+7 1
+AG
+8 1
+Calc
+9 1
+Calc
+10 1
+Prog
+11 1
+Eng
+12 1
+Eng

@@ -1,0 +1,29 @@
+4
+k-15
+5
+AG 20
+Calc 30
+DM 25
+Prog 20
+Eng 30
+k-16
+5
+AG 20
+Calc 30
+DM 25
+Prog 20
+Eng 30
+k-17
+5
+AG 20
+Calc 30
+DM 25
+Prog 20
+Eng 30
+k-18
+5
+AG 20
+Calc 30
+DM 25
+Prog 20
+Eng 30
