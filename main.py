@@ -4,12 +4,9 @@ from bidict import bidict
 import copy as cp
 import collections
 from functools import total_ordering
-<<<<<<< HEAD
-=======
 import pickle
 from datetime import datetime
 import matplotlib.pyplot as plt
->>>>>>> ed143b3a2677ac7ced3d12a0e827ac5726cec3ac
 
 
 group_to_number = bidict({"k-15": 0, "k-16": 1, "k-17": 2, "k-18": 3})
@@ -27,13 +24,8 @@ class GeneralOptions:
         self.lect_rooms = lect_rooms
         self.gens = 4
         self.num_working_days = 5
-<<<<<<< HEAD
-        self.threshold = 100
-        self.change_threshold = 30
-=======
         self.threshold = 10
         self.change_threshold = 20
->>>>>>> ed143b3a2677ac7ced3d12a0e827ac5726cec3ac
 
 
 @total_ordering
@@ -104,11 +96,7 @@ class Speciment:
                 continue
             for num_of_groups in classes_to_num_groups.values():
                 collided_room_classes += num_of_groups - 1
-<<<<<<< HEAD
-        self.evaluation = collided_room_classes*10 + collided_teacher_classes*10 + wasted_class_slot*2
-=======
         self.evaluation = collided_room_classes*3 + collided_teacher_classes*3 + wasted_class_slot*1
->>>>>>> ed143b3a2677ac7ced3d12a0e827ac5726cec3ac
         return self.evaluation
 
     def _get_subject_list(self, group):
@@ -185,11 +173,7 @@ class Generation:
         return self.select(1, 0).speciments[0]
 
     def shake(self, percentage):
-<<<<<<< HEAD
-        for i in range(len( self.speciments)):
-=======
         for i in range(len(self.speciments)):
->>>>>>> ed143b3a2677ac7ced3d12a0e827ac5726cec3ac
             choice = rng.randint(0, 100)
             if choice < percentage:
                 self.speciments[i] = self.get_random_speciment()
@@ -240,39 +224,18 @@ class Generation:
         return len(self.speciments)
 
 
-<<<<<<< HEAD
-=======
+
 def save_speciment(speciment: Speciment):
     serialized = pickle.dumps(speciment.schedule_table, protocol=0)
     with open("schedule2", "wb") as f:
         f.write(serialized)
 
-
->>>>>>> ed143b3a2677ac7ced3d12a0e827ac5726cec3ac
 class Schedule:
     def __init__(self, ops: GeneralOptions):
         self.ops = ops
         self.best_speciment = Speciment(ops)
 
-<<<<<<< HEAD
-    def create(self):
-        generation = self._create_random_generation(10)
-        unchanged_streak = 0
-        steps = 0
-        while generation.get_best_speciment().evaluate() > self.ops.threshold and steps < 1:
-            new_generation = generation.breed(generation.get_size()*4)
-            new_generation.mutate(mutate_percentage=10, gen_mutation_percentage=10)
-            new_generation = new_generation.select(generation.get_size(), lucker_percentage=10)
-            if generation.get_best_speciment().evaluate() - new_generation.get_best_speciment().evaluate():
-                unchanged_streak += 1
-            else:
-                unchanged_streak = 0
-            if unchanged_streak == 5:
-                new_generation.shake(percentage=80)
-            generation = new_generation
-            steps += 1
-        self.best_speciment = generation.get_best_speciment()
-=======
+
     def create(self, num_generations=1000, population_size=100, population_mutation_percentage=20,
                speciment_mutation_percentage=10, luckers_percentage=20, shake_percentage=90):
         total_num_of_generations = num_generations
@@ -318,7 +281,6 @@ class Schedule:
                 plt.draw()
                 plt.pause(0.001)
 
->>>>>>> ed143b3a2677ac7ced3d12a0e827ac5726cec3ac
 
     def get(self) -> Speciment:
         return self.best_speciment
@@ -393,14 +355,6 @@ def read_teachers_file():
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-    ops = GeneralOptions(read_subj_file(), read_teachers_file(), read_prof_file(), weeks=14, max_classes_per_day=4,
-                        groups=["k-15", "k-16", "k-17", "k-18"], small_rooms=[x for x in range(10)],
-                        lect_rooms=[x for x in range(11, 20)])
-    schedule = Schedule(ops)
-    schedule.create()
-    print(schedule.get().schedule_table)
-=======
     # with open("schedule", "rb") as fi:
     #     table = pickle.load(fi)
 
@@ -413,4 +367,3 @@ if __name__ == '__main__':
     serialized = pickle.dumps(schedule.get().schedule_table, protocol=0)
     with open("schedule", "wb") as f:
         f.write(serialized)
->>>>>>> ed143b3a2677ac7ced3d12a0e827ac5726cec3ac
